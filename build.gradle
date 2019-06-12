@@ -3,6 +3,9 @@ buildscript {
 
   repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+    maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
     maven {
       url "${project.rootDir.path}/build/localMaven"
     }
@@ -16,6 +19,8 @@ buildscript {
 allprojects {
   repositories {
     mavenCentral()
+    maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+    maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
   }
 
   tasks.withType(Test) {

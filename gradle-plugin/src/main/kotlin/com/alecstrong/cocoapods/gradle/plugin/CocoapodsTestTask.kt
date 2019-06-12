@@ -4,8 +4,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
-import org.jetbrains.kotlin.gradle.plugin.mpp.NativeOutputKind.EXECUTABLE
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 open class CocoapodsTestTask : DefaultTask() {
   internal lateinit var target: KotlinNativeTarget
@@ -14,7 +13,7 @@ open class CocoapodsTestTask : DefaultTask() {
 
   @TaskAction
   fun performTest() {
-    val binary = target.binaries.findExecutable("test", DEBUG)!!.outputFile
+    val binary = target.binaries.getTest(NativeBuildType.DEBUG).outputFile
     project.exec { exec ->
       exec.commandLine("xcrun", "simctl", "spawn", device, binary.absolutePath)
     }
